@@ -1,7 +1,5 @@
 # Criterios de Evaluación
 
-Este documento propone una rúbrica sencilla para evaluar la implementación del ejercicio del reloj digital.
-
 ## Elementos a evaluar
 
 1. **Funcionalidad básica**  
@@ -23,10 +21,3 @@ Este documento propone una rúbrica sencilla para evaluar la implementación del
    - Se agrega un título y/o fecha además de la hora.  
    - Se implementa un cuarto estilo propio.  
    - Se modifica el color de fondo en cada estilo.  
-
-## Escala sugerida
-
-- **Excelente (9‑10)**: Cumple todos los puntos obligatorios y agrega mejoras opcionales de manera creativa. El código es claro y bien organizado.
-- **Muy bien (7‑8)**: Cumple los requisitos obligatorios con pocos detalles menores por corregir.
-- **Bien (5‑6)**: Funciona pero falta alguna de las características requeridas o el código presenta desorganización evidente.
-- **Insuficiente (0‑4)**: No cumple los objetivos principales o no se puede ejecutar.
