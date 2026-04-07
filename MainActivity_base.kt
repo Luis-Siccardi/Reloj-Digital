@@ -21,7 +21,7 @@ import com.example.relojsimple.ui.theme.RelojSimpleTheme
 // import java.util.Locale
 
 /**
- * Archivo de base para que los estudiantes implementen un reloj digital.
+ * Archivo de base para implementar un reloj digital.
  *
  * Reemplaza el código generado por defecto en tu MainActivity con este contenido
  * y completa las secciones marcadas con `// TODO` según las consignas del ejercicio.
