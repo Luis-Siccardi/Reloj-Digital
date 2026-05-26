@@ -78,7 +78,7 @@ Un celular no reemplaza a un sonómetro profesional, ya que cada dispositivo tie
 
 ## Resultado esperado
 Al finalizar el práctico, la aplicación deberá mostrar una pantalla similar a esta:
-***
+
 Mi reloj digital
 14:35:21
 Medidor de sonido
@@ -86,7 +86,6 @@ Nivel actual: 58 dB
 Ruido moderado
 Gráfico
 ██████░░░░
-***
 
 ## Parte 1: Agregar el permiso del micrófono
 Para que la aplicación pueda usar el micrófono del celular, primero hay que declarar el permiso correspondiente.
