@@ -98,21 +98,15 @@ Agregar la siguiente línea antes de la etiqueta `<application>`:
 ```
 
 El archivo debería quedar parecido a este ejemplo:
-
 ```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
     <application
         android:allowBackup="true"
         android:label="RelojSimple"
         android:theme="@style/Theme.RelojSimple">
-
         <!-- Actividades de la aplicación -->
-
     </application>
-
 </manifest>
 ```
 
@@ -126,12 +120,9 @@ Cuando el usuario toque ese botón:
 - Si el permiso fue rechazado, se muestra un mensaje aclaratorio.
 
 Mensaje sugerido:
-
 ```text
 No se puede medir el sonido sin permiso de micrófono.
 ```
-
----
 
 ## Parte 3: Agregar la sección visual del medidor
 
@@ -152,22 +143,16 @@ Ejemplo de pantalla:
 
 ```text
 Mi reloj digital
-
 14:35:21
 
 Medidor de sonido
-
 Nivel actual: 58 dB
-
 Ruido moderado
 ```
-
----
 
 ## Parte 4: Crear variables de estado
 
 Para guardar el valor de los decibeles y actualizar la pantalla, se deben usar variables de estado.
-
 Ejemplo orientativo:
 
 ```kotlin
@@ -177,8 +162,6 @@ var permisoConcedido by remember { mutableStateOf(false) }
 ```
 
 Estas variables permiten que la interfaz cambie automáticamente cuando cambia su valor.
-
----
 
 ## Parte 5: Clasificar el nivel de ruido
 
@@ -200,12 +183,9 @@ val mensaje = when {
 }
 ```
 
----
-
 ## Parte 6: Cambiar el color según el nivel de sonido
 
 Además del mensaje, la aplicación deberá cambiar algún elemento visual según el nivel de ruido.
-
 Por ejemplo:
 
 | Nivel | Color sugerido |
@@ -226,8 +206,6 @@ val colorNivel = when {
 
 Ese color puede aplicarse al texto, al fondo de una tarjeta, a una barra visual o a algún indicador.
 
----
-
 ## Parte 7: Calcular los decibeles aproximados
 
 Para calcular un valor aproximado de sonido, se puede usar una función como la siguiente:
@@ -235,14 +213,11 @@ Para calcular un valor aproximado de sonido, se puede usar una función como la 
 ```kotlin
 fun calcularDecibeles(buffer: ShortArray, cantidadLeida: Int): Double {
     var suma = 0.0
-
     for (i in 0 until cantidadLeida) {
         suma += buffer[i] * buffer[i]
     }
-
     val promedio = suma / cantidadLeida
     val rms = kotlin.math.sqrt(promedio)
-
     return if (rms > 0) {
         20 * kotlin.math.log10(rms)
     } else {
@@ -263,12 +238,9 @@ Luego:
 4. Ese valor se guarda en una variable.
 5. La interfaz muestra el valor actualizado.
 
----
-
 ## Parte 8: Actualizar el valor automáticamente
 
 Al igual que el reloj actualiza la hora cada segundo, el medidor de sonido debe actualizar el valor de decibeles de forma automática.
-
 Se puede usar `LaunchedEffect` para ejecutar una tarea mientras el medidor está activo.
 
 Ejemplo orientativo:
@@ -280,7 +252,6 @@ LaunchedEffect(medidorActivo) {
             // Leer sonido del micrófono
             // Calcular decibeles
             // Actualizar la variable decibeles
-
             delay(500)
         }
     }
@@ -288,8 +259,6 @@ LaunchedEffect(medidorActivo) {
 ```
 
 La idea es que el valor no quede fijo, sino que cambie según el sonido del ambiente.
-
----
 
 ## Parte 9: Crear una barra visual de sonido
 
@@ -313,12 +282,9 @@ val progreso = (decibeles / 100).coerceIn(0.0, 1.0).toFloat()
 
 Ese valor puede usarse para representar gráficamente el nivel de sonido.
 
----
-
 ## Requisitos mínimos del práctico
 
 La aplicación debe cumplir con los siguientes puntos:
-
 - Mostrar el reloj digital funcionando.
 - Agregar una sección llamada `Medidor de sonido`.
 - Declarar el permiso del micrófono en `AndroidManifest.xml`.
@@ -328,57 +294,9 @@ La aplicación debe cumplir con los siguientes puntos:
 - Mostrar un mensaje según el nivel de ruido.
 - Cambiar algún color o elemento visual según el nivel detectado.
 
----
-
-## Nivel básico
-
-Para aprobar el nivel básico, la aplicación debe:
-
-- Mostrar el título `Medidor de sonido`.
-- Mostrar un valor fijo de ejemplo.
-- Mostrar un mensaje según ese valor.
-- Integrar la sección debajo del reloj digital.
-
-Ejemplo:
-
-```text
-Nivel actual: 50 dB
-Ruido moderado
-```
-
----
-
-## Nivel intermedio
-
-Para alcanzar el nivel intermedio, la aplicación debe:
-
-- Usar el micrófono del celular.
-- Pedir permiso correctamente.
-- Actualizar el valor de decibeles automáticamente.
-- Mostrar si el ambiente está tranquilo, moderado o ruidoso.
-
----
-
-## Nivel avanzado
-
-Para alcanzar el nivel avanzado, la aplicación debe incluir al menos una mejora visual.
-
-Opciones posibles:
-
-- Barra de sonido.
-- Cambio de color automático.
-- Valor máximo detectado.
-- Botón para pausar el medidor.
-- Botón para reiniciar el valor máximo.
-- Diseño integrado con los estilos del reloj.
-- Modo aula con advertencia cuando el ruido supere cierto nivel.
-
----
-
 ## Actividades opcionales
 
-Quienes terminen antes pueden agregar:
-
+Pueden agregar:
 - Fecha actual debajo del reloj.
 - Valor máximo de ruido detectado.
 - Promedio de sonido de los últimos segundos.
@@ -387,8 +305,6 @@ Quienes terminen antes pueden agregar:
 - Modo aula: mostrar una advertencia cuando el ruido supere cierto nivel.
 - Un mensaje personalizado cuando el aula esté demasiado ruidosa.
 - Un diseño tipo panel de control.
-
----
 
 ## Preguntas para responder en la carpeta
 
@@ -403,33 +319,6 @@ Responder con palabras propias:
 7. ¿Cómo podría usarse esta app dentro del aula?
 8. ¿Qué mejora le agregarías a esta aplicación?
 
----
-
-## Criterios de evaluación
-
-| Criterio | Excelente | Logrado | En proceso |
-|---|---|---|---|
-| Permiso de micrófono | Declara y solicita correctamente el permiso | Declara el permiso, pero necesita ayuda para solicitarlo | No logra configurar el permiso |
-| Interfaz en Compose | Organiza correctamente reloj y medidor | Muestra los elementos principales con algunos errores | La interfaz queda incompleta |
-| Uso de estado | Usa variables de estado correctamente | Usa estado con errores menores | No logra manejar cambios en pantalla |
-| Medición de sonido | El valor cambia usando el micrófono | El valor aparece, pero con funcionamiento parcial | Solo muestra un valor fijo |
-| Clasificación del ruido | Clasifica correctamente el nivel de sonido | Clasifica con poca precisión | No clasifica el sonido |
-| Diseño visual | Usa colores, tamaños o barra visual de forma clara | Tiene diseño básico pero funcional | La presentación es confusa |
-| Explicación del código | Puede explicar cómo funciona | Explica algunas partes | No puede explicar el funcionamiento |
-
----
-
-## Entrega del trabajo
-
-Cada estudiante o grupo deberá entregar:
-
-1. El proyecto funcionando en Android Studio.
-2. Captura de pantalla de la app en ejecución.
-3. Respuestas a las preguntas de la carpeta.
-4. Explicación breve de qué parte del código se encarga de medir el sonido.
-5. Explicación breve de qué mejora visual agregaron.
-
----
 
 ## Condiciones de aprobación
 
@@ -443,12 +332,9 @@ Para aprobar el práctico, la aplicación debe:
 - Tener una interfaz clara y ordenada.
 - Poder ser explicada por el estudiante.
 
----
-
 ## Recomendaciones para probar la aplicación
 
 Para probar el medidor, se pueden realizar las siguientes pruebas:
-
 1. Ejecutar la aplicación en un ambiente silencioso.
 2. Hablar cerca del micrófono.
 3. Aplaudir suavemente.
@@ -457,12 +343,9 @@ Para probar el medidor, se pueden realizar las siguientes pruebas:
 
 No se debe gritar cerca del celular ni exponerlo a sonidos extremadamente fuertes.
 
----
-
 ## Cierre del práctico
 
 Este práctico permite transformar una aplicación simple de reloj digital en una aplicación que también utiliza un sensor del celular.
-
 A partir de este ejercicio, se puede pensar en nuevas aplicaciones:
 
 - Medidor de ruido para el aula.
