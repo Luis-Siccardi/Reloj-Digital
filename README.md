@@ -44,6 +44,7 @@ Este repositorio contiene el material para trabajar en un ejercicio introductori
 Para más información sobre Compose y desarrollo Android consulta la documentación oficial de [Jetpack Compose](https://developer.android.com/jetpack/compose).
 
 ---
+---
 
 ## Práctico 2: Agregar un medidor de decibeles con el micrófono del celular
 
